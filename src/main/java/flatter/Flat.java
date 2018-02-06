@@ -16,7 +16,6 @@ public class Flat {
             }
         else {
                 flat.add(item);
-
             }
         }
         return flat;
