@@ -10,7 +10,7 @@ public class Counter {
         List<Integer> lol = new LinkedList<>();
         count -= 1;
         int index = count%sth.size();
-        
+
         while (!sth.isEmpty()) {
             index = index%sth.size();
             lol.add(sth.get(index));
