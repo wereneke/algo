@@ -1,6 +1,6 @@
 # algo
 
-####binSearch
+#### binSearch
 ------------------------------------------------------------------------
 For a given list of integers find given value in it.
 Write a program that will be binary search algorithm. 
@@ -9,7 +9,7 @@ and value that we are looking for and returns true or false:
 true if value is found in given list otherwise false.
 
 
-####Flattening
+#### Flattening
 -------------------------------------------------------------------------
 Write a program that will take on input list (it might contains different type of objects) and returns flatten list.
 Input list may be multidimensional.
@@ -24,7 +24,7 @@ the output should be:
 [1, 3, "age", 5, "Kraków", 1, 3, 4, 5, "codecool", 6, 7]
 
 
-####counter out
+#### counter out
 -------------------------------------------------------------------------
 It is a K-long sequence of syllables after all, and play this game repeatedly:
 N children stand in a circle, and they count from 1 to K starting from Player #1. 
