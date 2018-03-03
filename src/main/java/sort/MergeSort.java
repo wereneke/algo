@@ -2,10 +2,10 @@ package sort;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public class MergeSort {
 
+    Common common = new Common();
     /**
      * Sorts the given List in place
      * @param toSort the List to sort. Throws an error if its null
@@ -21,8 +21,6 @@ public class MergeSort {
         if (right.size() > 1) sort(right);
 
         merge(toSort, left, right);
-
-
     }
 
     private void merge(List<Integer> toSort, List<Integer> left, List<Integer> right) {
@@ -54,33 +52,6 @@ public class MergeSort {
             }
         }
 
-        replace(toSort, sorted);
-    }
-
-    private void replace(List<Integer> toSort, List<Integer> sorted) {
-
-        for(int i=0; i< toSort.size(); i++) {
-            toSort.set(i, sorted.get(i));
-        }
-    }
-
-    public static void main(String[] args) {
-
-        List<Integer> w = new LinkedList<>();
-        Random r = new Random();
-        MergeSort m = new MergeSort();
-
-        int a;
-        for (int i = 0; i < 1000; i++) {
-            a = r.nextInt();
-            w.add(a);
-        }
-        float start = System.nanoTime();
-        m.sort(w);
-        float elapsedTime = System.nanoTime() - start;
-//
-//        w.forEach(System.out::println);
-        System.out.println(elapsedTime);
-
+        common.replace(toSort, sorted);
     }
 }
