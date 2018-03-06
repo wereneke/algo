@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MergeSort {
 
-    Common common = new Common();
+    static Common common = new Common();
     /**
      * Sorts the given List in place
      * @param toSort the List to sort. Throws an error if its null

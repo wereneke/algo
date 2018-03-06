@@ -4,7 +4,7 @@ import java.util.List;
 
 public class QuickSort {
 
-    Common common = new Common();
+    static Common common = new Common();
 
     public void sort(List<Integer> toSort) {
 
