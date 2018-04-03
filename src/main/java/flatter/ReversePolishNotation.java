@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class ReversePolishNotation {
 
+    private static StringBuffer sb = new StringBuffer();
+
     static private HashMap<String, Integer> priority = new HashMap()
     {{
         put("(", 0);
@@ -21,6 +23,7 @@ public class ReversePolishNotation {
 
     public static String convertToPostfix(String quantification) {
 
+        sb.setLength(0);
         Stack<Character> stack = new Stack<>();
         StringBuilder postfix = new StringBuilder();
 
@@ -28,41 +31,23 @@ public class ReversePolishNotation {
 
         for (String sign: infix) {
 
-            //ALGORYTHM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (sign.matches("\\d+")) sb.append(sign);
 
         }
 
         return postfix.toString();
     }
 
-    private static List<String> getInfixInSequence(String quantification) {
+    public static List<String> getInfixInSequence(String quantification) {
 
         List<String> infix = new ArrayList<>();
-        List<Integer> indexes = indexesOfNumbers(quantification);
+        String regex = "(" + "\\d+" + ")" + "|" +  "(" + "[\\+\\-\\(\\)\\*\\^/%~]" + ")";
+        Matcher numeric = Pattern.compile(regex).matcher(quantification);
 
-        infix.add(quantification.substring(0,indexes.get(0)));
-
-        for (int i=0; i<indexes.size()-1; i++) {
-            int startIndex = indexes.get(i);
-            int endIndex = indexes.get(i+1);
-            infix.add(quantification.substring(startIndex, endIndex));
+        while (numeric.find()) {
+            infix.add(numeric.group());
         }
-
-        infix.add(quantification.substring(indexes.get(indexes.size()-1)));
 
         return infix;
-    }
-
-    private static List<Integer> indexesOfNumbers(String quantification) {
-
-        List<Integer> indexes = new ArrayList<>();
-        Matcher numbers = Pattern.compile("\\d+").matcher(quantification);
-
-        while (numbers.find()) {
-
-            indexes.add(numbers.regionStart());
-            indexes.add(numbers.regionEnd());
-        }
-        return indexes;
     }
 }
