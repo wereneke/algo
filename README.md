@@ -24,6 +24,12 @@ the output should be:
 [1, 3, "age", 5, "Kraków", 1, 3, 4, 5, "codecool", 6, 7]
 
 
+
+#### Polish Reverse Notation converter
+-------------------------------------------------------------------------
+Quantification is given as string so the result is
+
+
 #### counter out
 -------------------------------------------------------------------------
 It is a K-long sequence of syllables after all, and play this game repeatedly:
@@ -37,3 +43,10 @@ starting from 1 --> [1 2 3 4 5] --> 3 is out -->
 starting from 4 --> [1 2    4 5] --> 1 is out -->
 starting from 2 --> [   2    4 5] --> 5 is out -->
 starting from 2 --> [   2    4   ] --> 2 is out --> [4] wins
+
+#### sorting algorythms
+-------------------------------------------------------------------------
+- quick sort
+- merge sort
+- bubble sort
+- insertion sort
