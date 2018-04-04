@@ -1,12 +1,12 @@
 package flatter;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ReversePolishNotation {
-
-    private static StringBuffer sb = new StringBuffer();
 
     static private HashMap<String, Integer> priority = new HashMap()
     {{
@@ -21,24 +21,58 @@ public class ReversePolishNotation {
         put("~", 4);
     }};
 
+    private static String operatorRegex = "[\\+\\-\\*\\^/%~]";
+
     public static String convertToPostfix(String quantification) {
 
-        sb.setLength(0);
-        Stack<Character> stack = new Stack<>();
+
+        Stack<String> stack = new Stack<>();
         StringBuilder postfix = new StringBuilder();
 
         List<String> infix = getInfixInSequence(quantification);
 
         for (String sign: infix) {
 
-            if (sign.matches("\\d+")) sb.append(sign);
+            if (sign.matches("\\d+")) {
+                postfix.append(sign);
+                postfix.append(" ");
+            }
+            if (sign.equals("(")) stack.push(sign);
+            if (sign.equals(")")) {
+                while (!stack.peek().equals("(")) {
+                    postfix.append(stack.pop());
+                    postfix.append(" ");
+                }
+                stack.pop();
+            }
+            if (sign.matches(operatorRegex)) {
+                if (!stack.isEmpty()) {
+                    for (String signOnStack : stack) {
+                        if (priority.get(signOnStack) > priority.get(sign)) {
+                            while (!stack.peek().equals("(") && !stack.isEmpty()) {
+                                postfix.append(stack.pop());
+                                postfix.append(" ");
+                            }
+                            if (!stack.isEmpty()) stack.pop();
+                        }
+                        if (signOnStack.equals("(")) break;
+                    }
+                }
+                stack.push(sign);
+            }
+        }
 
+        while (!stack.isEmpty()) {
+            if (stack.peek().equals("(")) stack.pop();
+            else {
+                postfix.append(stack.pop());
+            }
         }
 
         return postfix.toString();
     }
 
-    public static List<String> getInfixInSequence(String quantification) {
+    private static List<String> getInfixInSequence(String quantification) {
 
         List<String> infix = new ArrayList<>();
         String regex = "(" + "\\d+" + ")" + "|" +  "(" + "[\\+\\-\\(\\)\\*\\^/%~]" + ")";
